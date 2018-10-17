@@ -1,0 +1,13 @@
+page-hours {
+    ion-title{
+        border-bottom: 2px solid grey;
+        padding-bottom: 5px;
+    }
+
+    .scroll-content{
+        align-content: center;
+        //display: flex;
+        flex-direction: column;
+        justify-content: center;
+     }
+}
