@@ -1,0 +1,25 @@
+name: Test Continuous Integration
+on:
+  # Run when the PR is closed to master branch
+  pull_request:
+    branches: [ master ]
+    types: [ closed ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Test script conditions below
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Echo Hello
+        if: ${{ github.event.label.name == 'Say Hello' || github.event_name == 'workflow_dispatch' }}
+        run: |
+            echo 'Hello'
+
+      - name: Echo Goodbye
+        if: ${{ github.event.label.name == 'Say Goodbye' || github.event_name == 'workflow_dispatch' }}
+        run: |
+            echo 'Goodbye'
