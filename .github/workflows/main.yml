@@ -1,6 +1,6 @@
 name: Test Continuous Integration
 on:
-  # Run when the PR is closed to master branch
+  # Run when the PR is closed to master branch **
   pull_request:
     branches: [ master ]
     types: [ closed ]
