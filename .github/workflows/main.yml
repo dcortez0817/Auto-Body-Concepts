@@ -5,6 +5,15 @@ on:
     branches: [ master ]
     types: [ closed ]
   workflow_dispatch:
+    inputs:
+      var1:
+        type: choice
+        description: 'Should the below script run'
+        required: true
+        default: yes1
+        options:
+          - yes1
+          - no1
 
 jobs:
   build:
@@ -15,11 +24,11 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Echo Hello
-        if: ${{ github.event_name == 'pull_request' && github.event.label.name == 'Display Message' || github.event_name == 'workflow_dispatch' }}
+        if: ${{github.event.label.name}} == 'Display Message' || ${{github.event_name}} == 'workflow_dispatch'
         run: |
             echo 'Hello'
 
       - name: Echo Goodbye
-        if: ${{ github.event_name == 'pull_request' && github.event.label.name == 'Display Message' || github.event_name == 'workflow_dispatch' }}
+        if: ${{github.event_name == 'pull_request'}} || ${{github.event.inputs.var1 == 'yes1'}}
         run: |
             echo 'Goodbye'
